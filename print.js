@@ -37,7 +37,7 @@ const printTeams = (teamSets, numOfMen) => {
     `
       : numOfMen > 10
       ? `
-    Please be aware that there are a few teams with three men, and all men. Perhaps rearrange names until you are happy.<br>
+    Please be aware that there are a few teams with three men, and some are all men. Perhaps rearrange names until you are happy.<br>
     `
       : "";
 // here is the ugliest thing ever written
