@@ -3,7 +3,7 @@ const topics = [
   "HTTP",
   "Testing",
   "Node",
-  "Datbase",
+  "Database",
   "Authentication",
   "REST API",
   "Single Page App",

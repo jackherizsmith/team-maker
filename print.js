@@ -1,109 +1,76 @@
 const printCohort = (cohort) => {
-  let results = `<hr><h3>The Cohort</h3> | Name |<br>
-  | ---- |<br>`;
+  let results = `<hr><section><h3>The Cohort</h3><div id="cohort">
+  <p>| Name |</p>
+  <p>| ---- |</p>`;
   for (let person = 0; person < cohort.length; person++) {
-    results += `| ${cohort[person]} |<br>`;
+    results += `<p>| ${cohort[person]} |</p>`;
   }
-  results += "<br><br>";
+  results += "</div></section>";
   return results;
 };
 
-const printTeams = (teamSets, numOfMen) => {
-  let results = `<hr>
-    <h3>Project teams</h3>
-    | Team set | Team 1 | Team 2 | Team 3 | Team 4 |<br>
-    | -------- | ------ | ------ | ------ | ------ |<br>`;
+const printTeams = (teamSets) => {
+  let results = `<hr><section><h3>Project teams</h3><div id="projectTeams">
+    <p>| Team set | Team 1 | Team 2 | Team 3 | Team 4 |</p>
+    <p>| -------- | ------ | ------ | ------ | ------ |</p>`;
   for (let teamSet = 0; teamSet < teamSets.length; teamSet++) {
-    results += `
-        | ${teamSet + 1} `;
+    results += `<p>| ${teamSet + 1} `;
     for (let team = 0; team < teamSets[teamSet].length; team++) {
       results += `| ${teamSets[teamSet][team][0]}, ${teamSets[teamSet][team][1]}, ${teamSets[teamSet][team][2]} & ${teamSets[teamSet][team][3]} `;
     }
-    results += `|<br>`;
+    results += `|</p>`;
   }
-  results += "<br>";
+  results += "</div><br>"
   results +=
     numOfMen === 9
-      ? `
-    Please be aware that there are two teams with three men:<br>
-    ${teamSets[2][2][0]}, ${teamSets[2][2][1]}, ${teamSets[2][2][2]} & ${teamSets[2][2][3]} in set 3 and ${teamSets[3][0][0]}, ${teamSets[3][0][1]}, ${teamSets[3][0][2]} & ${teamSets[3][0][3]} in set 4.<br><br>
-    You should also know that you have three all male teams, in sets 1,2, and 5. <br><br>
-    `
+      ? `<p><strong>Please be aware that there are two teams with three men:</strong></p><br>
+    <p><strong>${teamSets[2][2][0]}, ${teamSets[2][2][1]}, ${teamSets[2][2][2]} & ${teamSets[2][2][3]}</strong> in set 3 and <strong>${teamSets[3][0][0]}, ${teamSets[3][0][1]}, ${teamSets[3][0][2]} & ${teamSets[3][0][3]}</strong> in set 4.</p><br>
+    You should also know that you have three all male teams, in sets 1,2, and 5. <br><br>`
       : numOfMen === 10
-      ? `
-    Please be aware that there are three teams with three men:<br>
-    ${teamSets[2][0][0]}, ${teamSets[2][0][1]}, ${teamSets[2][0][2]} & ${teamSets[2][0][3]} and ${teamSets[2][2][0]}, ${teamSets[2][2][1]}, ${teamSets[2][2][2]} & ${teamSets[2][2][3]} in set 3 and ${teamSets[4][0][0]}, ${teamSets[4][0][1]}, ${teamSets[4][0][2]} & ${teamSets[4][0][3]} in set 4.<br><br>
-    You should also know that you have four all male teams, in sets 1,2, 4 and 5. <br><br>
-    `
+      ? `<p><strong>Please be aware that there are three teams with three men:</strong></p><br>
+    <p><strong>${teamSets[2][0][0]}, ${teamSets[2][0][1]}, ${teamSets[2][0][2]} & ${teamSets[2][0][3]}</strong> and <strong>${teamSets[2][2][0]}, ${teamSets[2][2][1]}, ${teamSets[2][2][2]} & ${teamSets[2][2][3]}</strong> in set 3 and <strong>${teamSets[4][0][0]}, ${teamSets[4][0][1]}, ${teamSets[4][0][2]} & ${teamSets[4][0][3]}</strong> in set 4.</p><br>
+    <p>You should also know that you have four all male teams, in sets 1,2, 4 and 5. </p>`
       : numOfMen > 10
-      ? `
-    Please be aware that there are a few teams with three men, and some are all men. Perhaps rearrange names until you are happy.<br>
-    `
+      ? `<p>Please be aware that there are a few teams with three men, and some are all men. Perhaps rearrange names until you are happy.</p>`
       : "";
+  results += '</section>'
 // here is the ugliest thing ever written
   results +=
-    "<br><br><hr><h3>Code reviews</h3>| Week | Team 1 | Team 2 | Mentors |<br>| ---- | ---- | ------- | ------ |<br>";
+    '<hr><section><h3>Code reviews</h3><div id="codeReview">';
   let teamCount = 0;
   for (let topic = 0; topic < topics.length - 1; topic++) {
+    results += "<p>| Week | Team 1 | Team 2 | Mentors |</p><p>| ---- | ------ | ------ | ------- |</p>";
     if (topics[topic] === "Teamwork" || topics[topic] === "Node") {
-      results += `
-            | ${topics[topic]} | ${teamSets[teamCount][0].join(", ")} | ${
-        teamSets[teamCount][1].join(", ")
-      } | ${
-        topics[topic - 1] ? topics[topic - 1] : topics[topics.length - 1]
-      } |<br>   
-            |  | ${teamSets[teamCount][2].join(", ")} | ${teamSets[teamCount][3].join(", ")} | ${
-        topics[topic]
-      } |<br>
-            `;
+      results += `<p>| ${topics[topic]} | ${teamSets[teamCount][0].join(", ")} | ${teamSets[teamCount][1].join(", ")} | ${topics[topic - 1] ? topics[topic - 1] : topics[topics.length - 1]} |</p>
+            <p>|  | ${teamSets[teamCount][2].join(", ")} | ${teamSets[teamCount][3].join(", ")} | ${topics[topic]} |</p><br>`;
       teamCount++;
     } else {
-      results += `
-            | ${topics[topic]} | ${teamSets[teamCount][0].join(", ")} | ${
-        teamSets[teamCount][1].join(", ")
-      } | ${
-        topics[topic - 1] ? topics[topic - 1] : topics[topics.length - 1]
-      } |<br>   
-            |  | ${teamSets[teamCount][2].join(", ")} | ${teamSets[teamCount][3].join(", ")} | ${
-        topics[topic]
-      }                                               |<br>
-            | ${topics[topic + 1]}| ${teamSets[teamCount][0].join(", ")} | ${
-        teamSets[teamCount][2].join(", ")
-      }| ${
-        topics[topic + 1]
-      }                                             |<br>   
-            | | ${teamSets[teamCount][1].join(", ")} | ${teamSets[teamCount][3].join(", ")}| ${
-        topics[topic] ? topics[topic] : topics[topics.length - 1]
-      }     |<br>`;
+      results += `<p>| ${topics[topic]} | ${teamSets[teamCount][0].join(", ")} | ${teamSets[teamCount][1].join(", ")} | ${topics[topic - 1] ? topics[topic - 1] : topics[topics.length - 1]} |</p>
+            <p>|  | ${teamSets[teamCount][2].join(", ")} | ${teamSets[teamCount][3].join(", ")} | ${topics[topic]} |</p><br>
+            <p>| Week | Team 1 | Team 2 | Mentors |</p><p>| ---- | ------ | ------ | ------- |</p>
+            <p>| ${topics[topic + 1]}| ${teamSets[teamCount][0].join(", ")} | ${teamSets[teamCount][2].join(", ")}| ${topics[topic + 1]}|</p>
+            <p>|  | ${teamSets[teamCount][1].join(", ")} | ${teamSets[teamCount][3].join(", ")}| ${topics[topic] ? topics[topic] : topics[topics.length - 1]} |</p><br>`;
       topic++;
     }
-    console.log(teamCount);
   }
-
-  results += `<br>`;
+  results += `</div></section>`;
   return results;
 };
 
 const printPairs = (pairs) => {
-  let results = "<hr><h3>Workshop pairs</h3>";
+  let results = '<hr><section><h3>Workshop pairs</h3><div id="workshopPairs">';
   for (let week = 0; week < pairs.length; week++) {
-    results += `Week ${week < readingWeek ? week + 1 : week + 2}: ${
-      topics[week]
-    }<br>`;
+    results += `<p> Week ${week < readingWeek ? week + 1 : week + 2}: ${topics[week]}</p>`;
     for (let segment = 0; segment < segments.length; segment++) {
-      results += `
-                ${segments[segment]}<br>
-                | Person 1 | Person 2 |<br>
-                | -------- | -------- |<br>
-            `;
+      results += `<p>${segments[segment]}</p><p>| Person 1 | Person 2 |</p><p>| -------- | -------- |</p>`;
       for (let pair = 0; pair < pairs[week][segment].length; pair++) {
-        results += `| ${pairs[week][segment][pair][0]} | ${pairs[week][segment][pair][1]} |<br>`;
+        results += `<p>| ${pairs[week][segment][pair][0]} | ${pairs[week][segment][pair][1]} |</p>`;
       }
       results += "<br>";
     }
     results += "<br>";
   }
-  results += "<br><br>";
+  results += "</div></section>";
   return results;
 };
 

@@ -50,7 +50,7 @@ const submitHandler = (e) => {
   const cohort = createCohort(mArray, fArray);
   const teams = createTeams(cohort); // returns array
   const pairs = createPairs(cohort); // returns array
-  output.innerHTML = printAll(cohort, teams, pairs, numOfMen);
+  output.innerHTML = printAll(cohort, teams, pairs);
 };
 
 form.addEventListener("submit", submitHandler);
