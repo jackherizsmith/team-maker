@@ -13,13 +13,13 @@ const makeNewInputs = (ms, fs) => {
   for (let m = 0; m < ms; m++) {
     newMInputs += `
     <label for="m${m}" class="form__label">${m + 1}</label>
-    <input id="m${m}" name="m${m}" class="form__input" value="Fred">
+    <input id="m${m}" name="m${m}" class="form__input" required>
     `;
   }
   for (let f = 0; f < fs; f++) {
     newFInputs += `
     <label for="f${f}" class="form__label">${f + 1}</label>
-    <input id="f${f}" name="f${f}" class="form__input" value="Sarah">
+    <input id="f${f}" name="f${f}" class="form__input" required>
     `;
   }
 

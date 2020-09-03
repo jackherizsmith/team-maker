@@ -47,32 +47,32 @@ const printTeams = (teamSets, numOfMen) => {
   for (let topic = 0; topic < topics.length - 1; topic++) {
     if (topics[topic] === "Teamwork" || topics[topic] === "Node") {
       results += `
-            | ${topics[topic]} | ${teamSets[teamCount][0]} | ${
-        teamSets[teamCount][1]
+            | ${topics[topic]} | ${teamSets[teamCount][0].join(", ")} | ${
+        teamSets[teamCount][1].join(", ")
       } | ${
         topics[topic - 1] ? topics[topic - 1] : topics[topics.length - 1]
       } |<br>   
-            |  | ${teamSets[teamCount][2]} | ${teamSets[teamCount][3]} | ${
+            |  | ${teamSets[teamCount][2].join(", ")} | ${teamSets[teamCount][3].join(", ")} | ${
         topics[topic]
       } |<br>
             `;
       teamCount++;
     } else {
       results += `
-            | ${topics[topic]} | ${teamSets[teamCount][0]} | ${
-        teamSets[teamCount][1]
+            | ${topics[topic]} | ${teamSets[teamCount][0].join(", ")} | ${
+        teamSets[teamCount][1].join(", ")
       } | ${
         topics[topic - 1] ? topics[topic - 1] : topics[topics.length - 1]
       } |<br>   
-            |  | ${teamSets[teamCount][2]} | ${teamSets[teamCount][3]} | ${
+            |  | ${teamSets[teamCount][2].join(", ")} | ${teamSets[teamCount][3].join(", ")} | ${
         topics[topic]
       }                                               |<br>
-            | ${topics[topic + 1]}| ${teamSets[teamCount][0]} | ${
-        teamSets[teamCount][2]
+            | ${topics[topic + 1]}| ${teamSets[teamCount][0].join(", ")} | ${
+        teamSets[teamCount][2].join(", ")
       }| ${
         topics[topic + 1]
       }                                             |<br>   
-            | | ${teamSets[teamCount][1]} | ${teamSets[teamCount][3]}| ${
+            | | ${teamSets[teamCount][1].join(", ")} | ${teamSets[teamCount][3].join(", ")}| ${
         topics[topic] ? topics[topic] : topics[topics.length - 1]
       }     |<br>`;
       topic++;
