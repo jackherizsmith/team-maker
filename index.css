@@ -1,0 +1,27 @@
+:root {
+  font-family: "Courier New", Courier, monospace;
+}
+
+input[type="range"] {
+  min-width: 100%;
+}
+
+.form__names {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+}
+
+.form__label {
+  margin-top: 0.5rem;
+  display: block;
+}
+
+.form__input {
+  min-width: 80%;
+}
+
+button {
+  display: block;
+  margin: 0 auto;
+}
