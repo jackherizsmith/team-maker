@@ -20,7 +20,7 @@ const printTeams = (teamSets) => {
     }
     results += `|</p>`;
   }
-  results += "</div><br>"
+  results += "</div><br>";
   results +=
     numOfMen === 9
       ? `<p><strong>Please be aware that there are two teams with three men:</strong></p><br>
@@ -33,23 +33,44 @@ const printTeams = (teamSets) => {
       : numOfMen > 10
       ? `<p>Please be aware that there are a few teams with three men, and some are all men. Perhaps rearrange names until you are happy.</p>`
       : "";
-  results += '</section>'
-// here is the ugliest thing ever written
-  results +=
-    '<hr><section><h3>Code reviews</h3><div id="codeReview">';
+  results += "</section>";
+  // here is the ugliest thing ever written
+  results += '<hr><section><h3>Code reviews</h3><div id="codeReview">';
   let teamCount = 0;
   for (let topic = 0; topic < topics.length - 1; topic++) {
-    results += "<p>| Week | Team 1 | Team 2 | Mentors |</p><p>| ---- | ------ | ------ | ------- |</p>";
+    results += `<pre>| Week | Team 1 | Team 2 | Mentors |
+| ---- | ------ | ------ | ------- |`;
     if (topics[topic] === "Teamwork" || topics[topic] === "Node") {
-      results += `<p>| ${topics[topic]} | ${teamSets[teamCount][0].join(", ")} | ${teamSets[teamCount][1].join(", ")} | ${topics[topic - 1] ? topics[topic - 1] : topics[topics.length - 1]} |</p>
-            <p>|  | ${teamSets[teamCount][2].join(", ")} | ${teamSets[teamCount][3].join(", ")} | ${topics[topic]} |</p><br>`;
+      results += `
+| ${topics[topic]} | ${teamSets[teamCount][0].join(", ")} | ${teamSets[
+        teamCount
+      ][1].join(", ")} | ${
+        topics[topic - 1] ? topics[topic - 1] : topics[topics.length - 1]
+      } |
+|  | ${teamSets[teamCount][2].join(", ")} | ${teamSets[teamCount][3].join(
+        ", "
+      )} | ${topics[topic]} |</pre><br>`;
       teamCount++;
     } else {
-      results += `<p>| ${topics[topic]} | ${teamSets[teamCount][0].join(", ")} | ${teamSets[teamCount][1].join(", ")} | ${topics[topic - 1] ? topics[topic - 1] : topics[topics.length - 1]} |</p>
-            <p>|  | ${teamSets[teamCount][2].join(", ")} | ${teamSets[teamCount][3].join(", ")} | ${topics[topic]} |</p><br>
-            <p>| Week | Team 1 | Team 2 | Mentors |</p><p>| ---- | ------ | ------ | ------- |</p>
-            <p>| ${topics[topic + 1]}| ${teamSets[teamCount][0].join(", ")} | ${teamSets[teamCount][2].join(", ")}| ${topics[topic + 1]}|</p>
-            <p>|  | ${teamSets[teamCount][1].join(", ")} | ${teamSets[teamCount][3].join(", ")}| ${topics[topic] ? topics[topic] : topics[topics.length - 1]} |</p><br>`;
+      results += `
+| ${topics[topic]} | ${teamSets[teamCount][0].join(", ")} | ${teamSets[
+        teamCount
+      ][1].join(", ")} | ${
+        topics[topic - 1] ? topics[topic - 1] : topics[topics.length - 1]
+      } |
+|  | ${teamSets[teamCount][2].join(", ")} | ${teamSets[teamCount][3].join(
+        ", "
+      )} | ${topics[topic]} |</pre><br>
+<pre>| Week | Team 1 | Team 2 | Mentors |
+| ---- | ------ | ------ | ------- |
+| ${topics[topic + 1]}| ${teamSets[teamCount][0].join(", ")} | ${teamSets[
+        teamCount
+      ][2].join(", ")}| ${topics[topic + 1]}|
+|  | ${teamSets[teamCount][1].join(", ")} | ${teamSets[teamCount][3].join(
+        ", "
+      )}| ${
+        topics[topic] ? topics[topic] : topics[topics.length - 1]
+      } |</pre><br>`;
       topic++;
     }
   }
@@ -60,7 +81,9 @@ const printTeams = (teamSets) => {
 const printPairs = (pairs) => {
   let results = '<hr><section><h3>Workshop pairs</h3><div id="workshopPairs">';
   for (let week = 0; week < pairs.length; week++) {
-    results += `<p> Week ${week < readingWeek ? week + 1 : week + 2}: ${topics[week]}</p>`;
+    results += `<p> Week ${week < readingWeek ? week + 1 : week + 2}: ${
+      topics[week]
+    }</p>`;
     for (let segment = 0; segment < segments.length; segment++) {
       results += `<p>${segments[segment]}</p><p>| Person 1 | Person 2 |</p><p>| -------- | -------- |</p>`;
       for (let pair = 0; pair < pairs[week][segment].length; pair++) {
