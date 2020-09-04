@@ -2,36 +2,37 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <link rel="stylesheet" href="index.css">
+    <link rel="stylesheet" href="index.css" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Pairs</title>
   </head>
   <body>
-    <h1>The Sorting Hat</h2>
+    <header>
+      <h1>The Infinite Possibility Machine</h1>
+      <p>Teamarise your cohort to create <span id="possibilities"></span> different timelines</p>
+    </header>
+    <h2>People in the cohort</h2>
     <form action="/submit" id="form">
-      <h2>People on the cohort</h2>
-        <label for="genderInput">Gender ratio</label>
-        <input
-          type="range"
-          name="ratio"
-          id="genderInput"
-          max="16"
-          step="1"
-          value="8"
-          onChange="updateValue()"
-          onInput="updateValue()"
-        />
-        <output id="genderRatio"></output>
-        <div id="nameInputs" class="form__names">
-          <section class="names">
-            <fieldset id="men">
-            </fieldset>
-          </section>
-          <section class="names">
-            <fieldset id="women">
-            </fieldset>
-          </section>
-        </div>
+      <label for="genderInput">Gender ratio</label>
+      <input
+        type="range"
+        name="ratio"
+        id="genderInput"
+        max="16"
+        step="1"
+        value="8"
+        onChange="updateValue()"
+        onInput="updateValue()"
+      />
+      <output id="genderRatio"></output>
+      <div id="nameInputs" class="form__names">
+        <section class="names">
+          <fieldset id="men"></fieldset>
+        </section>
+        <section class="names">
+          <fieldset id="women"></fieldset>
+        </section>
+      </div>
       <button type="submit">Teamarise my cohort</button>
     </form>
     <output id="results"></output>

@@ -4,6 +4,7 @@ const form = document.getElementById("form");
 const mSection = document.getElementById("men");
 const fSection = document.getElementById("women");
 const output = document.getElementById("results");
+const possibilities = document.getElementById("possibilities")
 let longestName = 0,
   numOfMen = 0;
 
@@ -30,7 +31,7 @@ const makeNewInputs = (ms, fs) => {
 const updateValue = () => {
   const ms = range.value;
   const fs = 16 - range.value;
-
+  possibilities.textContent = calcPoss(ms,fs);
   gender.textContent = ms + " men and " + fs + " women";
 
   makeNewInputs(ms, fs);

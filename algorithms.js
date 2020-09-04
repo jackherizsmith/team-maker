@@ -1,3 +1,14 @@
+const calcPoss = (ms,fs) => {
+  let mFac = 1, fFac = 1;
+  for (let i = 2; i <= ms; i++) {
+        mFac = mFac * i;
+  }
+  for (let i = 2; i <= fs; i++) {
+        fFac = fFac * i;
+  }
+  return Math.floor((mFac + fFac) / 24);
+}
+
 const pairOptions = [
   [
     [0, 1],
