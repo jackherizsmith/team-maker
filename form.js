@@ -38,7 +38,7 @@ const updateValue = () => {
   const ms = range.value;
   const nms = 16 - range.value;
   possibilities.textContent = calcPoss(ms, nms);
-  gender.textContent = ms + " men and " + nms + " others";
+  gender.textContent = ms + " dudes and " + nms + " others";
 
   makeNewInputs(ms, nms);
 };
@@ -87,8 +87,8 @@ const submitHandler = (e) => {
   numOfMen = mArray.length;
 
   const cohort = createCohort(mArray, nmArray);
-  const teams = createTeams(cohort); // returns array
-  const pairs = createPairs(cohort); // returns array
+  const teams = createTeams(cohort);
+  const pairs = createPairs(cohort);
   output.innerHTML = printAll(cohort, teams, pairs);
 };
 

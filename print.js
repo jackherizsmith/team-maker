@@ -17,29 +17,29 @@ const printTeams = (teamSets) => {
     '<section><h3>Project teams and code reviews</h3><div class="warning">';
   results +=
     numOfMen === 7
-      ? `<p><strong>Please be aware that there are two all male teams:</strong></p>
+      ? `<p><strong>Please be aware that there are two all dude teams:</strong></p>
   <p><strong>${teamSets[0][3].join(
     ", "
   )}</strong> in set 1 and <strong>${teamSets[1][3].join(
           ", "
         )}</strong> in set 2.</p>`
       : numOfMen === 8
-      ? `<p><strong>Please be aware that there are two all male teams:</strong></p>
+      ? `<p><strong>Please be aware that there are two all dude teams:</strong></p>
     <p><strong>${teamSets[3][0].join(
       ", "
     )}</strong> in set 4 and <strong>${teamSets[4][3].join(
           ", "
         )}</strong> in set 5.</p>`
       : numOfMen === 9
-      ? `<p><strong>Please be aware that there are two teams with three men:</strong></p>
+      ? `<p><strong>Please be aware that there are two teams with three dudes:</strong></p>
     <p><strong>${teamSets[2][2].join(
       ", "
     )}</strong> in set 3 and <strong>${teamSets[3][0].join(
           ", "
         )}</strong> in set 4.</p>
-    You should also know that you have three all male teams, in sets 1, 2 and 5.`
+    You should also know that you have three all dude teams, in sets 1, 2 and 5.`
       : numOfMen === 10
-      ? `<p><strong>Please be aware that there are three teams with three men:</strong></p>
+      ? `<p><strong>Please be aware that there are three teams with three dudes:</strong></p>
     <p><strong>${teamSets[2][0].join(
       ", "
     )}</strong> and <strong>${teamSets[2][2].join(
@@ -47,9 +47,9 @@ const printTeams = (teamSets) => {
         )}</strong> in set 3 and <strong>${teamSets[4][0].join(
           ", "
         )}</strong> in set 4.</p>
-    <p>You should also know that you have four all male teams, in sets 1, 2, 4 and 5. </p>`
+    <p>You should also know that you have four all dude teams, in sets 1, 2, 4 and 5. </p>`
       : numOfMen > 10
-      ? `<p>Please be aware that there are a few teams with three men, and some are all men. Perhaps rearrange names until you are happy.</p>`
+      ? `<p>Please be aware that there are a few teams with three dudes, and some are all dudes. Perhaps rearrange names until this works well for everyone.</p>`
       : "";
   results += `</div><pre># Project teams and code reviews
 ## First half project teams
