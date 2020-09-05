@@ -1,6 +1,8 @@
 const printCohort = (cohort) => {
-  let results = `<section><h3>The Cohort</h3><div id="cohort">
-  <pre>| Name |
+  let results = `<section><h3>The cohort</h3><div id="cohort">
+  <pre># The cohort
+  
+| Name |
 | ---- |`;
   for (let person = 0; person < cohort.length; person++) {
     results += `
@@ -11,17 +13,8 @@ const printCohort = (cohort) => {
 };
 
 const printTeams = (teamSets) => {
-  let results = `<section><h3>Project teams</h3><div id="projectTeams"><pre>| Team set | Team 1 | Team 2 | Team 3 | Team 4 |
-| -------- | ------ | ------ | ------ | ------ |`;
-  for (let teamSet = 0; teamSet < teamSets.length; teamSet++) {
-    results += `
-| ${teamSet + 1} `;
-    for (let team = 0; team < teamSets[teamSet].length; team++) {
-      results += `| ${teamSets[teamSet][team].join(", ")} `;
-    }
-    results += `|`;
-  }
-  results += "</div>";
+  let results =
+    '<section><h3>Project teams and code reviews</h3><div class="warning">';
   results +=
     numOfMen === 7
       ? `<p><strong>Please be aware that there are two all male teams:</strong></p>
@@ -44,7 +37,7 @@ const printTeams = (teamSets) => {
     )}</strong> in set 3 and <strong>${teamSets[3][0].join(
           ", "
         )}</strong> in set 4.</p>
-    You should also know that you have three all male teams, in sets 1,2, and 5.`
+    You should also know that you have three all male teams, in sets 1, 2 and 5.`
       : numOfMen === 10
       ? `<p><strong>Please be aware that there are three teams with three men:</strong></p>
     <p><strong>${teamSets[2][0].join(
@@ -54,43 +47,55 @@ const printTeams = (teamSets) => {
         )}</strong> in set 3 and <strong>${teamSets[4][0].join(
           ", "
         )}</strong> in set 4.</p>
-    <p>You should also know that you have four all male teams, in sets 1,2, 4 and 5. </p>`
+    <p>You should also know that you have four all male teams, in sets 1, 2, 4 and 5. </p>`
       : numOfMen > 10
       ? `<p>Please be aware that there are a few teams with three men, and some are all men. Perhaps rearrange names until you are happy.</p>`
       : "";
-  results += "</section>";
-  // here is the ugliest thing ever written
-  results += '<section><h3>Code reviews</h3><div id="codeReview">';
+  results += `</div><pre># Project teams and code reviews
+## First half project teams
+  
+| Team set | Team 1 | Team 2 | Team 3 | Team 4 |
+| -------- | ------ | ------ | ------ | ------ |`;
+  for (let teamSet = 0; teamSet < teamSets.length; teamSet++) {
+    results += `
+| ${teamSet + 1} `; //| ${topics[teamSet]} `;
+    for (let team = 0; team < teamSets[teamSet].length; team++) {
+      results += `| ${teamSets[teamSet][team].join(", ")} `;
+    }
+    results += `|`;
+  }
+  results += `<pre>
+  
+## Code reviewing`;
   let teamCount = 0;
   for (let topic = 0; topic < topics.length - 1; topic++) {
-    results += `<pre>
+    results += `
 
-**${topics[topic]} Week**
+**${topics[topic]} week**
     
 | Team 1 | Team 2 | Mentors |
-| ---- | ------ | ------ | ------- |`;
+| ------ | ------ | ------- |`;
     if (topics[topic] === "Teamwork" || topics[topic] === "Node") {
       results += `
 | ${teamSets[teamCount][0].join(", ")} | ${teamSets[teamCount][1].join(
         ", "
       )} | ${
-        topics[topic - 1] ? topics[topic - 1] : topics[topics.length - 1]
+        topics[topic - 1] ? topics[topic - 1] : topics[topics.length - 2]
       } |
 | ${teamSets[teamCount][2].join(", ")} | ${teamSets[teamCount][3].join(
         ", "
-      )} | ${topics[topic]} |</pre>`;
+      )} | ${topics[topic]} |`;
       teamCount++;
     } else {
       results += `
-| ${teamSets[teamCount][0].join(", ")} | ${teamSets[
-        teamCount
-      ][1].join(", ")} | ${
-        topics[topic - 1] ? topics[topic - 1] : topics[topics.length - 1]
+| ${teamSets[teamCount][0].join(", ")} | ${teamSets[teamCount][1].join(
+        ", "
+      )} | ${
+        topics[topic - 1] ? topics[topic - 1] : topics[topics.length - 2]
       } |
-| ${teamSets[teamCount][2].join(", ")} | ${teamSets[
-        teamCount
-      ][3].join(", ")} | ${topics[topic]} |</pre>
-<pre>
+| ${teamSets[teamCount][2].join(", ")} | ${teamSets[teamCount][3].join(
+        ", "
+      )} | ${topics[topic]} |
 
 **${topics[topic + 1]} Week**
 
@@ -101,23 +106,21 @@ const printTeams = (teamSets) => {
       )}| ${topics[topic + 1]}|
 | ${teamSets[teamCount][1].join(", ")} | ${teamSets[teamCount][3].join(
         ", "
-      )}| ${topics[topic] ? topics[topic] : topics[topics.length - 1]} |</pre>`;
+      )}| ${topics[topic] ? topics[topic] : topics[topics.length - 2]} |`;
       topic++;
     }
   }
-  results += `</div></section>`;
+  results += `</pre></div></section>`;
   return results;
 };
 
 const printPairs = (pairs) => {
   let results = '<section><h3>Workshop pairs</h3><div id="workshopPairs">';
-  results += `<pre># Worskhop pairs`
+  results += `<pre># Worskhop pairs`;
   for (let week = 0; week < pairs.length; week++) {
     results += `
 
-## Week ${week < readingWeek ? week + 1 : week + 2}: ${
-      topics[week]
-    }`;
+## Week ${week < readingWeek ? week + 1 : week + 2}: ${topics[week]}`;
     for (let segment = 0; segment < segments.length; segment++) {
       results += `
 **${segments[segment]}**

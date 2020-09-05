@@ -1,6 +1,6 @@
 const topics = [
   "Teamwork",
-  "HTTP",
+  "HTTP", 
   "Testing",
   "Node",
   "Database",
@@ -8,7 +8,7 @@ const topics = [
   "REST API",
   "Single-page App",
   "React",
-];
+]; // could somehow group these better to help with singe / double week teams
 
 const segments = ["Mon AM", "Mon PM", "Tues AM", "Tues PM", "Wed AM"]; // okay hardcoded?
 

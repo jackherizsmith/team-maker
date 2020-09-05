@@ -25,13 +25,13 @@ const makeNewInputs = (ms, nms) => {
   }
 
   mSection.innerHTML =
-    "<legend>Men</legend>" +
+    `<legend>Men</legend><button onClick="shift('m','up')" type="button">Shift up</button>` +
     newMInputs +
-    `<button onClick="shift('m','up')" type="button">Shift up</button><button onClick="shift('m','down')" type="button">Shift down</button><button onClick="shift('m','rand')" type="button">Random</button>`;
+    `<button onClick="shift('m','down')" type="button">Shift down</button><button onClick="shift('m','rand')" type="button" class="random">Random</button>`;
   nmSection.innerHTML =
-    "<legend>Not men</legend>" +
+    `<legend>Not men</legend><button onClick="shift('nm','up')" type="button">Shift up</button>` +
     newNmInputs +
-    `<button onClick="shift('nm','up')" type="button">Shift up</button><button onClick="shift('nm','down')" type="button">Shift down</button><button onClick="shift('nm','rand')" type="button">Random</button>`;
+    `<button onClick="shift('nm','down')" type="button">Shift down</button><button onClick="shift('nm','rand')" type="button" class="random">Random</button>`;
 };
 
 const updateValue = () => {
