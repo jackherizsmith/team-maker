@@ -111,8 +111,9 @@ const printTeams = (teamSets) => {
 
 const printPairs = (pairs) => {
   let results = '<section><h3>Workshop pairs</h3><div id="workshopPairs">';
+  results += `<pre># Worskhop pairs`
   for (let week = 0; week < pairs.length; week++) {
-    results += `<pre># Worskhop pairs
+    results += `
 
 ## Week ${week < readingWeek ? week + 1 : week + 2}: ${
       topics[week]
@@ -130,9 +131,8 @@ const printPairs = (pairs) => {
       results += `
 `;
     }
-    results += "</pre>";
   }
-  results += "</div></section>";
+  results += "</pre></div></section>";
   return results;
 };
 

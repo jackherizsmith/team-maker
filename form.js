@@ -4,7 +4,7 @@ const form = document.getElementById("form");
 const mSection = document.getElementById("men");
 const nmSection = document.getElementById("notMen");
 const output = document.getElementById("results");
-const possibilities = document.getElementById("possibilities")
+const possibilities = document.getElementById("possibilities");
 let longestName = 0,
   numOfMen = 0;
 
@@ -24,27 +24,60 @@ const makeNewInputs = (ms, nms) => {
     `;
   }
 
-  mSection.innerHTML = "<legend>Men</legend>" + newMInputs + `<button onClick="randomise('m')" type="button">Randomise</button>`;
-  nmSection.innerHTML = "<legend>Not men</legend>" + newNmInputs + `<button onClick="randomise('nm')" type="button">Randomise</button>`;
+  mSection.innerHTML =
+    "<legend>Men</legend>" +
+    newMInputs +
+    `<button onClick="shift('m','up')" type="button">Shift up</button><button onClick="shift('m','down')" type="button">Shift down</button><button onClick="shift('m','rand')" type="button">Random</button>`;
+  nmSection.innerHTML =
+    "<legend>Not men</legend>" +
+    newNmInputs +
+    `<button onClick="shift('nm','up')" type="button">Shift up</button><button onClick="shift('nm','down')" type="button">Shift down</button><button onClick="shift('nm','rand')" type="button">Random</button>`;
 };
 
 const updateValue = () => {
   const ms = range.value;
   const nms = 16 - range.value;
-  possibilities.textContent = calcPoss(ms,nms);
+  possibilities.textContent = calcPoss(ms, nms);
   gender.textContent = ms + " men and " + nms + " others";
 
   makeNewInputs(ms, nms);
-}
+};
 
 const getInputs = (gender) => {
-  return arr = Array.from(gender.children).filter((el) => el.tagName === "INPUT").map((input) => input.value);
-}
+  return Array.from(gender.children)
+    .filter((el) => el.tagName === "INPUT")
+    .map((input) => input.value);
+};
 
-const randomise = (gender) => {
-  inputValues = gender === "m" ? getInputs(mSection) : getInputs(nmSection);
-  console.log("randomise -> inputValues", inputValues)
-}
+const rearrangeArray = (inputValues, dir) => {
+  switch (dir) {
+    case "up":
+      inputValues.push(inputValues[0]);
+      inputValues.splice(0, 1);
+      break;
+    case "down":
+      inputValues.unshift(inputValues[inputValues.length - 1]);
+      inputValues.splice(inputValues.length - 1, 1);
+      break;
+    default:
+      for (let i = inputValues.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [inputValues[i], inputValues[j]] = [inputValues[j], inputValues[i]];
+      }
+  }
+  return inputValues;
+};
+
+const shift = (gender, dir) => {
+  const section = gender === "m" ? mSection : nmSection;
+  const inputValues = rearrangeArray(getInputs(section), dir);
+  const inputs = Array.from(section.children).filter(
+    (el) => el.tagName === "INPUT"
+  );
+  for (let i = 0; i < inputs.length; i++) {
+    inputs[i].value = inputValues[i];
+  }
+};
 
 const submitHandler = (e) => {
   e.preventDefault();
