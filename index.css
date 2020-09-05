@@ -15,16 +15,19 @@ h1,h2,h3 {
 
 h1 {
   font-size:2rem;
+}
+
+h2 {
+  font-size:1.75rem;
+}
+
+.sub {
   display: inline-block;
   background: linear-gradient(60deg, red, orange , yellow, green, cyan, blue, violet);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
   -webkit-text-stroke: .5px rgb(0, 60, 255);
-}
-
-h2 {
-  font-size:1.75rem;
 }
 
 h3 {
