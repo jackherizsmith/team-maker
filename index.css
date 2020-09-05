@@ -5,7 +5,6 @@
 
 :root {
   font-size: 1rem;
-  --highlight: hsl(323, 100%, 60%);
 }
 
 h1,h2,h3 {
@@ -162,7 +161,7 @@ pre {
   text-align: left;
 }
 
-.footer {
+footer {
   min-height: 3rem;
   background-color: #272c33;
   color: hsl(195, 93%, 96%);
@@ -170,12 +169,12 @@ pre {
   text-align: right;
 }
 
-.footer > a {
+footer > a {
   text-decoration: none;
   transition: .2s all;
   color: hsl(195, 93%, 96%);
 }
 
-.footer > a:hover {
-  color: var(--highlight);
+footer > a:hover {
+  color: hsl(323, 100%, 60%);
 }
