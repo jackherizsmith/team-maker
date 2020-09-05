@@ -41,15 +41,18 @@ h3 {
 }
 
 body {
-  margin: 0 auto;
-  padding: 3rem;
-  max-width: 80rem;
   overflow-x: hidden;
   background-color: hsla(300, 91%, 91%, 0.404);
 }
 
+main {
+  padding: 3rem;
+  margin: 0 auto;
+  max-width: 80rem;
+}
+
 header {
-  margin-bottom: 2rem;
+  padding-top: 3rem;
 }
 
 form {
@@ -160,12 +163,8 @@ pre {
 }
 
 .footer {
-  position: relative;
-  left: -3rem;
-  bottom: -3rem;
   min-height: 3rem;
   background-color: #272c33;
-  min-width: 100vw;
   color: hsl(195, 93%, 96%);
   padding: 1rem 2rem;
   text-align: right;

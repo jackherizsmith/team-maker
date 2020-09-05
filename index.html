@@ -14,31 +14,33 @@
       <h2 class="sub">aka The Infinite Possibility Machine</h2>
       <p>Sort the cohort and create <span id="possibilities"></span> different timelines</p>
     </header>
-    <h2>People in the cohort</h2>
-    <form action="/submit" id="form">
-      <label for="genderInput">Gender ratio: </label>
-      <output id="genderRatio"></output>
-      <input
-        type="range"
-        name="ratio"
-        id="genderInput"
-        max="16"
-        step="1"
-        value="8"
-        onChange="updateValue()"
-        onInput="updateValue()"
-      />
-      <section id="nameInputs" class="form__names">
-        <div class="names">
-          <fieldset id="men"></fieldset>
-        </div>
-        <div class="names">
-          <fieldset id="notMen"></fieldset>
-        </div>
-      </section>
-      <button type="submit">Generate teams!</button>
-    </form>
-    <output id="results"></output>
+    <main>
+      <h2>People in the cohort</h2>
+      <form action="/submit" id="form">
+        <label for="genderInput">Gender ratio: </label>
+        <output id="genderRatio"></output>
+        <input
+          type="range"
+          name="ratio"
+          id="genderInput"
+          max="16"
+          step="1"
+          value="8"
+          onChange="updateValue()"
+          onInput="updateValue()"
+        />
+        <section id="nameInputs" class="form__names">
+          <div class="names">
+            <fieldset id="men"></fieldset>
+          </div>
+          <div class="names">
+            <fieldset id="notMen"></fieldset>
+          </div>
+        </section>
+        <button type="submit">Generate teams!</button>
+      </form>
+      <output id="results"></output>
+    </main>
     <footer class="footer">Made by <a href="https://github.com/jackherizsmith" class="jack">Jack</a></footer>
     <script src="courseInfo.js"></script>
     <script src="algorithms.js"></script>
