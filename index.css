@@ -5,6 +5,7 @@
 
 :root {
   font-size: 1rem;
+  --highlight: hsl(323, 100%, 60%);
 }
 
 h1,h2,h3 {
@@ -14,6 +15,12 @@ h1,h2,h3 {
 
 h1 {
   font-size:2rem;
+  display: inline-block;
+  background: linear-gradient(60deg, red, orange , yellow, green, cyan, blue, violet);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  -webkit-text-stroke: .5px rgb(0, 60, 255);
 }
 
 h2 {
@@ -33,12 +40,12 @@ h3 {
 body {
   margin: 0 auto;
   padding: 3rem;
-  max-width: 40rem;
+  max-width: 80rem;
+  overflow-x: hidden;
   background-color: hsla(300, 91%, 91%, 0.404);
 }
 
 header {
-  text-align: center;
   margin-bottom: 2rem;
 }
 
@@ -54,7 +61,10 @@ section {
 }
 
 input[type="range"] {
-  min-width: 100%;
+  width: 100%;
+  max-width: 40rem;
+  display: block;
+  margin: 1rem auto 2rem;
 }
 
 fieldset {
@@ -66,6 +76,7 @@ fieldset {
 .form__names {
   display: flex;
   flex-direction: row;
+  flex-wrap: wrap;
   justify-content: space-evenly;
 }
 
@@ -78,23 +89,19 @@ fieldset {
 }
 
 .names > fieldset > legend {
+  border:2px solid green;
   background-color: rgb(255, 242, 255);
   color: black;
   padding: .5rem;
-  text-align: center;
 }
 
 .form__label:not(:first-of-type) {
   margin-top: 1rem;
 }
 
-form > label, form > output {
-  font-size: 1.125rem;
-}
-
 .form__input {
+  border:1px solid green;
   padding: .25rem;
-  font-size: 1rem;
 }
 
 .form__input:last-of-type {
@@ -147,4 +154,26 @@ pre {
   font-family: 'Inconsolata', monospace;
   white-space: pre-line;
   text-align: left;
+}
+
+.footer {
+  position: relative;
+  left: -3rem;
+  bottom: -3rem;
+  min-height: 3rem;
+  background-color: #272c33;
+  min-width: 100vw;
+  color: hsl(195, 93%, 96%);
+  padding: 1rem 2rem;
+  text-align: right;
+}
+
+.footer > a {
+  text-decoration: none;
+  transition: .2s all;
+  color: hsl(195, 93%, 96%);
+}
+
+.footer > a:hover {
+  color: var(--highlight);
 }

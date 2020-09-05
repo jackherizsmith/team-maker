@@ -38,7 +38,7 @@ const updateValue = () => {
   const ms = range.value;
   const nms = 16 - range.value;
   possibilities.textContent = calcPoss(ms, nms);
-  gender.textContent = ms + " dudes and " + nms + " others";
+  gender.textContent = ms + " dudes and " + nms + " non dudes";
 
   makeNewInputs(ms, nms);
 };

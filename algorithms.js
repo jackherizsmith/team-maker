@@ -267,10 +267,10 @@ const createTeams = (cohort) => {
       [cohort[12], cohort[1], cohort[10], cohort[7]],
     ],
     [
-      [cohort[0], cohort[9], cohort[6], cohort[15]],
       [cohort[4], cohort[13], cohort[10], cohort[3]],
       [cohort[8], cohort[1], cohort[14], cohort[7]],
       [cohort[12], cohort[5], cohort[2], cohort[11]],
+      [cohort[0], cohort[9], cohort[6], cohort[15]],
     ],
     [
       [cohort[0], cohort[13], cohort[10], cohort[7]],
