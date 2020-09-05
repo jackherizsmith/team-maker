@@ -1,12 +1,12 @@
-const calcPoss = (ms,fs) => {
-  let mFac = 1, fFac = 1;
+const calcPoss = (ms,nms) => {
+  let mFac = 1, nmFac = 1;
   for (let i = 2; i <= ms; i++) {
         mFac = mFac * i;
   }
-  for (let i = 2; i <= fs; i++) {
-        fFac = fFac * i;
+  for (let i = 2; i <= nms; i++) {
+        nmFac = nmFac * i;
   }
-  return Math.floor((mFac + fFac) / 24);
+  return Math.floor((mFac + nmFac) / 24);
 }
 
 const pairOptions = [
@@ -162,8 +162,8 @@ const pairOptions = [
   ],
 ];
 
-const createCohort = (mNames, fNames) => {
-  const cohort = Array.from(fNames);
+const createCohort = (mNames, nmNames) => {
+  const cohort = Array.from(nmNames);
   switch (mNames.length) {
     case 1:
       cohort.splice(0, 0, mNames[0]);

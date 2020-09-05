@@ -6,7 +6,7 @@ const topics = [
   "Database",
   "Authentication",
   "REST API",
-  "Single Page App",
+  "Single-page App",
   "React",
 ];
 
