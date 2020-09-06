@@ -54,6 +54,26 @@ header {
   padding-top: 3rem;
 }
 
+/* .collapsible {
+  background-color: hsl(208, 100%, 97%);
+  cursor: pointer;
+  width: 100%;
+  border: none;
+  outline: none;
+  padding: 2rem;
+  margin: 0;
+}
+
+.active, .collapsible:hover {
+  background-color: hsl(208, 100%, 95%);
+  transform: translateY(0);
+}
+
+.hidden-content {
+  display: none;
+  overflow: hidden;
+} */
+
 form {
   margin-bottom: 2rem;
 }
@@ -159,6 +179,49 @@ pre {
   font-family: 'Inconsolata', monospace;
   white-space: pre-line;
   text-align: left;
+}
+
+.copy {
+  margin: 0;
+}
+
+.tooltip {
+  position: relative;
+  display: inline-block;
+  margin: 1rem auto;
+}
+
+.tooltip .tooltiptext {
+  visibility: hidden;
+  width: 80%;
+  background-color: #555;
+  color: #fff;
+  text-align: center;
+  border-radius: 6px;
+  padding: 5px;
+  position: absolute;
+  z-index: 1;
+  bottom: 150%;
+  left: 40%;
+  margin-left: -30%;
+  opacity: 0;
+  transition: opacity 0.3s;
+}
+
+.tooltip .tooltiptext::after {
+  content: "";
+  position: absolute;
+  top: 100%;
+  left: 50%;
+  margin-left: -5px;
+  border-width: 5px;
+  border-style: solid;
+  border-color: #555 transparent transparent transparent;
+}
+
+.tooltip:hover .tooltiptext {
+  visibility: visible;
+  opacity: 1;
 }
 
 footer {

@@ -1,12 +1,49 @@
 const range = document.getElementById("genderInput");
 const gender = document.getElementById("genderRatio");
-const form = document.getElementById("form");
+// const collapsibles = document.getElementsByClassName("collapsible")
+// const courseInfo = document.getElementById("course");
+const tooltips = document.getElementsByClassName("tooltiptext");
+const form = document.getElementById("people");
 const mSection = document.getElementById("men");
 const nmSection = document.getElementById("notMen");
 const output = document.getElementById("results");
 const possibilities = document.getElementById("possibilities");
 let longestName = 0,
   numOfMen = 0;
+
+// for (let btn = 0; btn < copyBtns.length; btn++) {
+//   copyBtns[btn].
+// }
+
+const copy = (id) => {
+  /* Get the text field */
+  const copyText = document.getElementById(id).textContent;
+  const input = document.createElement('textarea');
+  input.innerHTML = copyText;
+  document.body.appendChild(input);
+  input.select();
+  const result = document.execCommand('copy');
+  document.body.removeChild(input);
+  const tooltip = document.getElementById(id+"Tip");
+  tooltip.innerHTML = "Copied!";
+  return result;
+}
+
+const clearTip = (id) => {
+  const tooltip = document.getElementById(id + "Tip");
+  tooltip.innerHTML = "Click to copy";
+}
+
+// 
+// collapsibles[0].addEventListener("click", e => {
+//   e.target.classList.toggle("active");
+//   const content = e.target.nextElementSibling;
+//   if (content.style.display === "block") {
+//     content.style.display = "none";
+//   } else {
+//     content.style.display = "block";
+//   }
+// });
 
 const makeNewInputs = (ms, nms) => {
   let newMInputs = "",

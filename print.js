@@ -1,6 +1,6 @@
 const printCohort = (cohort) => {
-  let results = `<section><h3>The cohort</h3><div id="cohort">
-  <pre># The cohort
+  let results = `<section><h3>The cohort</h3><div class="tooltip"><button class="copy" onclick="copy('cohort')" onmouseout="clearTip('cohort')"><span class="tooltiptext" id="cohortTip">Click to copy</span>Copy markdown</button></div>
+  <pre id="cohort"># The cohort
   
 | Name |
 | ---- |`;
@@ -8,13 +8,13 @@ const printCohort = (cohort) => {
     results += `
 | ${cohort[person]} |`;
   }
-  results += "</pre></div></section>";
+  results += "</pre></section>";
   return results;
 };
 
 const printTeams = (teamSets) => {
   let results =
-    '<section><h3>Project teams and code reviews</h3>';
+    `<section><h3>Project teams and code reviews</h3><div class="tooltip"><button class="copy" onclick="copy('teams')" onmouseout="clearTip('teams')"><span class="tooltiptext" id="teamsTip">Click to copy</span>Copy this markdown</button></div>`;
   results +=
     numOfMen === 7
       ? `<div class="warning"><p><strong>Please be aware that Team 4 in sets 1 and 2 are all dudes:</strong></p>
@@ -51,7 +51,7 @@ const printTeams = (teamSets) => {
       : numOfMen > 10
       ? `<div class="warning"><p>Please be aware that there are a few teams with three dudes, and some are all dudes. Perhaps rearrange names until this works well for everyone.</p></div>`
       : "";
-  results += `<pre># Project teams and code reviews
+  results += `<pre id="teams"># Project teams and code reviews
 ## First half project teams
   
 | Team set | Team 1 | Team 2 | Team 3 | Team 4 |
@@ -64,7 +64,7 @@ const printTeams = (teamSets) => {
     }
     results += `|`;
   }
-  results += `<pre>
+  results += `
   
 ## Code reviewing`;
   let teamCount = 0;
@@ -110,13 +110,13 @@ const printTeams = (teamSets) => {
       topic++;
     }
   }
-  results += `</pre></div></section>`;
+  results += `</pre></section>`;
   return results;
 };
 
 const printPairs = (pairs) => {
-  let results = '<section><h3>Workshop pairs</h3><div id="workshopPairs">';
-  results += `<pre># Worskhop pairs`;
+  let results = `<section><h3>Workshop pairs</h3><div class="tooltip"><button class="copy" onclick="copy('pairs')" onmouseout="clearTip('pairs')"><span class="tooltiptext" id="pairsTip">Click to copy</span>Copy markdown</button></div>`;
+  results += `<pre id="pairs"># Worskhop pairs`;
   for (let week = 0; week < pairs.length; week++) {
     results += `
 
@@ -135,7 +135,7 @@ const printPairs = (pairs) => {
 `;
     }
   }
-  results += "</pre></div></section>";
+  results += "</pre></section>";
   return results;
 };
 

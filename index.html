@@ -15,31 +15,41 @@
       <p>Sort the cohort and create <span id="possibilities"></span> different timelines</p>
     </header>
     <main>
-      <h2>People in the cohort</h2>
-      <form action="/submit" id="form">
-        <label for="genderInput">Gender ratio: </label>
-        <output id="genderRatio"></output>
-        <input
-          type="range"
-          name="ratio"
-          id="genderInput"
-          max="16"
-          step="1"
-          value="8"
-          onChange="updateValue()"
-          onInput="updateValue()"
-        />
-        <section id="nameInputs" class="form__names">
-          <div class="names">
-            <fieldset id="men"></fieldset>
-          </div>
-          <div class="names">
-            <fieldset id="notMen"></fieldset>
-          </div>
-        </section>
-        <button type="submit">Generate teams!</button>
-      </form>
-      <output id="results"></output>
+      <!-- <section>
+        <button type="button" class="collapsible"><h2>Course info</h2></button>
+        <form action="/submit" id="course" class="hidden-content">
+          <p>blee bloo blah</p>
+        </form>
+      </section> -->
+      <section>
+        <h2>People in the cohort</h2>
+        <form action="/submit" id="people">
+          <label for="genderInput">Gender ratio: </label>
+          <output id="genderRatio"></output>
+          <input
+            type="range"
+            name="ratio"
+            id="genderInput"
+            max="16"
+            step="1"
+            value="8"
+            onChange="updateValue()"
+            onInput="updateValue()"
+          />
+          <section id="nameInputs" class="form__names">
+            <div class="names">
+              <fieldset id="men"></fieldset>
+            </div>
+            <div class="names">
+              <fieldset id="notMen"></fieldset>
+            </div>
+          </section>
+          <button type="submit">Generate teams!</button>
+        </form>
+      </section>
+      <section>
+        <output id="results"></output>
+      </section>
     </main>
     <footer>Made by <a href="https://github.com/jackherizsmith">Jack</a></footer>
     <script src="courseInfo.js"></script>
