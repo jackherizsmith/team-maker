@@ -202,7 +202,7 @@ pre {
   position: absolute;
   z-index: 1;
   bottom: 150%;
-  left: 40%;
+  left: 50%;
   margin-left: -30%;
   opacity: 0;
   transition: opacity 0.3s;
