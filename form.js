@@ -51,13 +51,13 @@ const makeNewInputs = (ms, nms) => {
   for (let m = 0; m < ms; m++) {
     newMInputs += `
     <label for="m${m}" class="form__label">${m + 1}</label>
-    <input id="m${m}" name="m${m}" class="form__input" type="text" required>
+    <input id="m${m}" name="m${m}" class="form__input" type="text" value="m" required>
     `;
   }
   for (let nm = 0; nm < nms; nm++) {
     newNmInputs += `
     <label for="nm${nm}" class="form__label">${nm + 1}</label>
-    <input id="nm${nm}" name="nm${nm}" class="form__input" type="text" required>
+    <input id="nm${nm}" name="nm${nm}" class="form__input" type="text" value="f" required>
     `;
   }
 

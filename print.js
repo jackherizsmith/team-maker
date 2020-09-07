@@ -13,8 +13,8 @@ const printCohort = (cohort) => {
 };
 
 const printTeams = (teamSets) => {
-  let results =
-    `<section><h3>Project teams and code reviews</h3><div class="tooltip"><button class="copy" onclick="copy('teams')" onmouseout="clearTip('teams')"><span class="tooltiptext" id="teamsTip">Click to copy</span>Copy this markdown</button></div>`;
+  console.log("printTeams -> teamSets", teamSets);
+  let results = `<section><h3>Project teams and code reviews</h3><div class="tooltip"><button class="copy" onclick="copy('teams')" onmouseout="clearTip('teams')"><span class="tooltiptext" id="teamsTip">Click to copy</span>Copy this markdown</button></div>`;
   results +=
     numOfMen === 7
       ? `<div class="warning"><p><strong>Please be aware that Team 4 in sets 1 and 2 are all dudes:</strong></p>
@@ -27,9 +27,7 @@ const printTeams = (teamSets) => {
       ? `<div class="warning"><p><strong>Please be aware that Team 4 in sets 4 and 5 are all dudes:</strong></p>
     <p><strong>${teamSets[3][3].join(
       ", "
-    )}</strong> and <strong>${teamSets[4][3].join(
-          ", "
-        )}</strong>.</p></div>`
+    )}</strong> and <strong>${teamSets[4][3].join(", ")}</strong>.</p></div>`
       : numOfMen === 9
       ? `<div class="warning"><p><strong>Please be aware that there are two teams with three dudes:</strong></p>
     <p><strong>${teamSets[2][2].join(
@@ -54,13 +52,13 @@ const printTeams = (teamSets) => {
   results += `<pre id="teams"># Project teams and code reviews
 ## First half project teams
   
-| Team set | Team 1 | Team 2 | Team 3 | Team 4 |
-| -------- | ------ | ------ | ------ | ------ |`;
-  for (let teamSet = 0; teamSet < teamSets.length; teamSet++) {
-    results += `
-| ${teamSet + 1} `; //| ${topics[teamSet]} `;
-    for (let team = 0; team < teamSets[teamSet].length; team++) {
-      results += `| ${teamSets[teamSet][team].join(", ")} `;
+| Topic | Team set | Team 1 | Team 2 | Team 3 | Team 4 |
+| ----- | -------- | ------ | ------ | ------ | ------ |`;
+  for (let week = 0; week < topics.length; week++) {
+    results += topics[week][1] != undefined ? `
+| ${topics[week][0]} | ${topics[week][1] + 1} ` : ""; //| ${topics[teamSet]} `;
+    for (let team = 0; team < 4; team++) {
+      results += teamSets[topics[week][1]] ? `| ${teamSets[topics[week][1]][team].join(', ')} ` : "";
     }
     results += `|`;
   }
@@ -80,11 +78,11 @@ const printTeams = (teamSets) => {
 | ${teamSets[teamCount][0].join(", ")} | ${teamSets[teamCount][1].join(
         ", "
       )} | ${
-        topics[topic - 1] ? topics[topic - 1] : topics[topics.length - 2]
+        topics[topic - 1] ? topics[topic - 1][1] : topics[topics.length - 2][1]
       } |
 | ${teamSets[teamCount][2].join(", ")} | ${teamSets[teamCount][3].join(
         ", "
-      )} | ${topics[topic]} |`;
+      )} | ${topics[topic][0]} |`;
       teamCount++;
     } else {
       results += `
@@ -95,7 +93,7 @@ const printTeams = (teamSets) => {
       } |
 | ${teamSets[teamCount][2].join(", ")} | ${teamSets[teamCount][3].join(
         ", "
-      )} | ${topics[topic]} |
+      )} | ${topics[topic][0]} |
 
 **${topics[topic + 1]} week**
 
@@ -106,7 +104,7 @@ const printTeams = (teamSets) => {
       )}| ${topics[topic + 1]}|
 | ${teamSets[teamCount][1].join(", ")} | ${teamSets[teamCount][3].join(
         ", "
-      )}| ${topics[topic] ? topics[topic] : topics[topics.length - 2]} |`;
+      )}| ${topics[topic] ? topics[topic][1] : topics[topics.length - 2]} |`;
       topic++;
     }
   }
