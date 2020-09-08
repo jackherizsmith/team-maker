@@ -287,17 +287,19 @@ const createPairs = (cohort) => {
   let pairRef = 6,
     week = -1,
     seg = 0;
-  for (let workshop = 0; workshop < 45; workshop++) {
-    if (workshop % 15 === 0) {
+    const totalSegments = topics.length * segments.length;
+  for (let workshop = 0; workshop < totalSegments; workshop++) {
+    if (workshop % pairOptions.length === 0) {
       pairRef = 0;
     }
-    if (pairRef % 5 === 0) {
+    if (pairRef % segments.length === 0) {
       week++;
       seg = 0;
       workshopPairs.push([]);
     }
     workshopPairs[week].push([]);
-    for (let pairNo = 0; pairNo < 8; pairNo++) {
+    const cohortPairs = 16/2;
+    for (let pairNo = 0; pairNo < cohortPairs; pairNo++) {
       workshopPairs[week][seg].push([
         cohort[pairOptions[pairRef][pairNo][0]],
         cohort[pairOptions[pairRef][pairNo][1]],

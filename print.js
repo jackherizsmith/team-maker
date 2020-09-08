@@ -13,7 +13,6 @@ const printCohort = (cohort) => {
 };
 
 const printTeams = (teamSets) => {
-  console.log("printTeams -> teamSets", teamSets);
   let results = `<section><h3>Project teams and code reviews</h3><div class="tooltip"><button class="copy" onclick="copy('teams')" onmouseout="clearTip('teams')"><span class="tooltiptext" id="teamsTip">Click to copy</span>Copy this markdown</button></div>`;
   results +=
     numOfMen === 7
@@ -52,61 +51,35 @@ const printTeams = (teamSets) => {
   results += `<pre id="teams"># Project teams and code reviews
 ## First half project teams
   
-| Topic | Team set | Team 1 | Team 2 | Team 3 | Team 4 |
-| ----- | -------- | ------ | ------ | ------ | ------ |`;
+| Week | Team set | Topic | Team 1 | Team 2 | Team 3 | Team 4 |
+| ---- | -------- | ----- | ------ | ------ | ------ | ------ |`;
   for (let week = 0; week < topics.length; week++) {
     results += topics[week][1] != undefined ? `
-| ${topics[week][0]} | ${topics[week][1] + 1} ` : ""; //| ${topics[teamSet]} `;
+| ${week < readingWeek ? week + 1 : week + 2} | ${topics[week][1] + 1} | ${topics[week][0]} ` : ""; //| ${topics[teamSet]} `;
     for (let team = 0; team < 4; team++) {
       results += teamSets[topics[week][1]] ? `| ${teamSets[topics[week][1]][team].join(', ')} ` : "";
     }
-    results += `|`;
+    results += topics[week][1] != undefined ? `|` : "";
   }
   results += `
   
 ## Code reviewing`;
-  let teamCount = 0;
-  for (let topic = 0; topic < topics.length - 1; topic++) {
+  for (let week = 0; week < topics.length - 1; week++) {
+    const reps = topics.filter(topic => topic[1] === topics[week][1]).length;
+    for (let rep = 0; rep < reps; rep++){
+      const weekTopic = topics[week+rep];
     results += `
-
-**${topics[topic]} week**
-    
+  
+**${weekTopic[0]} week**
+      
 | Team 1 | Team 2 | Mentors |
 | ------ | ------ | ------- |`;
-    if (topics[topic] === "Teamwork" || topics[topic] === "Node") {
       results += `
-| ${teamSets[teamCount][0].join(", ")} | ${teamSets[teamCount][1].join(
-        ", "
-      )} | ${
-        topics[topic - 1] ? topics[topic - 1][1] : topics[topics.length - 2][1]
-      } |
-| ${teamSets[teamCount][2].join(", ")} | ${teamSets[teamCount][3].join(
-        ", "
-      )} | ${topics[topic][0]} |`;
-      teamCount++;
-    } else {
-      results += `
-| ${teamSets[teamCount][0].join(", ")} | ${teamSets[teamCount][1].join(
-        ", "
-      )} | ${
-        topics[topic - 1] ? topics[topic - 1] : topics[topics.length - 2]
-      } |
-| ${teamSets[teamCount][2].join(", ")} | ${teamSets[teamCount][3].join(
-        ", "
-      )} | ${topics[topic][0]} |
-
-**${topics[topic + 1]} week**
-
-| Team 1 | Team 2 | Mentors |
-| ------ | ------ | ------- |
-| ${teamSets[teamCount][0].join(", ")} | ${teamSets[teamCount][2].join(
-        ", "
-      )}| ${topics[topic + 1]}|
-| ${teamSets[teamCount][1].join(", ")} | ${teamSets[teamCount][3].join(
-        ", "
-      )}| ${topics[topic] ? topics[topic][1] : topics[topics.length - 2]} |`;
-      topic++;
+| ${teamSets[weekTopic[1]][0]} | ${rep === 0 ? teamSets[weekTopic[1]][1] : teamSets[weekTopic[1]][2]} | ${weekTopic[0]} |
+| ${rep === 0 ? teamSets[weekTopic[1]][2] : teamSets[weekTopic[1]][1]} | ${teamSets[weekTopic[1]][3]} | ${topics[week+rep-1] ? topics[week+rep-1][0] : topics[topics.length-2][0]} |
+      `;
     }
+    if (reps > 1) week += reps - 1 ;
   }
   results += `</pre></section>`;
   return results;
@@ -118,7 +91,7 @@ const printPairs = (pairs) => {
   for (let week = 0; week < pairs.length; week++) {
     results += `
 
-## Week ${week < readingWeek ? week + 1 : week + 2}: ${topics[week]}`;
+## Week ${week < readingWeek ? week + 1 : week + 2}: ${topics[week][0]}`;
     for (let segment = 0; segment < segments.length; segment++) {
       results += `
 **${segments[segment]}**
