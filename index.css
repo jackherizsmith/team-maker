@@ -164,10 +164,34 @@ button:active {
   transform: translateY(0);
 }
 
+table {
+  border-collapse: collapse;
+  margin: 2rem auto;
+}
+
+td, th {
+  border: .125rem solid #666;
+  text-align: left;
+  padding: .5rem;
+}
+
+tr{
+  background-color: hsl(0, 0%, 0%, .1);
+}
+
+tr:first-of-type{
+  background-color: hsl(0, 0%, 0%, 0.2);
+}
+
+tr:nth-child(even) {
+  background-color: hsl(0, 0%, 0%, 0);
+}
+
 .warning {
   padding: 1rem;
   background-color: rgb(255, 255, 219);
   border: 1px solid black;
+  margin-bottom: 1rem;
 }
 
 .warning > p:not(:last-of-type) {

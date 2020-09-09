@@ -13,7 +13,13 @@ const printCohort = (cohort) => {
 };
 
 const printTeams = (teamSets) => {
-  let results = `<section><h3>Project teams and code reviews</h3><div class="tooltip"><button class="copy" onclick="copy('teams')" onmouseout="clearTip('teams')"><span class="tooltiptext" id="teamsTip">Click to copy</span>Copy this markdown</button></div>`;
+  let results = `<section><h3>Project teams and code reviews</h3>
+  <table><tr><th>Set</th><th>Team 1</th><th>Team 2</th><th>Team 3</th><th>Team 4</th></tr>
+  `;
+  for (let team = 0; team < teamSets.length; team++) {
+    results += `<tr><td>${team+1}</td><td>${teamSets[team][0].join(', ')}</td><td>${teamSets[team][1].join(', ')}</td><td>${teamSets[team][2].join(', ')}</td><td>${teamSets[team][3].join(', ')}</td></tr>`
+  }
+  results += "</table>";
   results +=
     numOfMen === 7
       ? `<div class="warning"><p><strong>Please be aware that Team 4 in sets 1 and 2 are all dudes:</strong></p>
@@ -48,16 +54,25 @@ const printTeams = (teamSets) => {
       : numOfMen > 10
       ? `<div class="warning"><p>Please be aware that there are a few teams with three dudes, and some are all dudes. Perhaps rearrange names until this works well for everyone.</p></div>`
       : "";
-  results += `<pre id="teams"># Project teams and code reviews
+  results += `<div class="tooltip"><button class="copy" onclick="copy('teams')" onmouseout="clearTip('teams')"><span class="tooltiptext" id="teamsTip">Click to copy</span>Copy this markdown</button></div>
+  
+<pre id="teams"># Project teams and code reviews
 ## First half project teams
   
-| Week | Team set | Topic | Team 1 | Team 2 | Team 3 | Team 4 |
-| ---- | -------- | ----- | ------ | ------ | ------ | ------ |`;
+| Week | Topic | Team 1 | Team 2 | Team 3 | Team 4 |
+| ---- | ----- | ------ | ------ | ------ | ------ |`;
   for (let week = 0; week < topics.length; week++) {
-    results += topics[week][1] != undefined ? `
-| ${week < readingWeek ? week + 1 : week + 2} | ${topics[week][1] + 1} | ${topics[week][0]} ` : ""; //| ${topics[teamSet]} `;
+    results +=
+      topics[week][1] != undefined
+        ? `
+| ${week < readingWeek ? week + 1 : week + 2} | ${
+            topics[week][0]
+          } `
+        : ""; //| ${topics[teamSet]} `;
     for (let team = 0; team < 4; team++) {
-      results += teamSets[topics[week][1]] ? `| ${teamSets[topics[week][1]][team].join(', ')} ` : "";
+      results += teamSets[topics[week][1]]
+        ? `| ${teamSets[topics[week][1]][team].join(", ")} `
+        : "";
     }
     results += topics[week][1] != undefined ? `|` : "";
   }
@@ -65,21 +80,29 @@ const printTeams = (teamSets) => {
   
 ## Code reviewing`;
   for (let week = 0; week < topics.length - 1; week++) {
-    const reps = topics.filter(topic => topic[1] === topics[week][1]).length;
-    for (let rep = 0; rep < reps; rep++){
-      const weekTopic = topics[week+rep];
-    results += `
+    const reps = topics.filter((topic) => topic[1] === topics[week][1]).length;
+    for (let rep = 0; rep < reps; rep++) {
+      const weekTopic = topics[week + rep];
+      results += `
   
 **${weekTopic[0]} week**
       
 | Team 1 | Team 2 | Mentors |
 | ------ | ------ | ------- |`;
       results += `
-| ${teamSets[weekTopic[1]][0]} | ${rep === 0 ? teamSets[weekTopic[1]][1] : teamSets[weekTopic[1]][2]} | ${weekTopic[0]} |
-| ${rep === 0 ? teamSets[weekTopic[1]][2] : teamSets[weekTopic[1]][1]} | ${teamSets[weekTopic[1]][3]} | ${topics[week+rep-1] ? topics[week+rep-1][0] : topics[topics.length-2][0]} |
+| ${teamSets[weekTopic[1]][0]} | ${
+        rep === 0 ? teamSets[weekTopic[1]][1] : teamSets[weekTopic[1]][2]
+      } | ${weekTopic[0]} |
+| ${rep === 0 ? teamSets[weekTopic[1]][2] : teamSets[weekTopic[1]][1]} | ${
+        teamSets[weekTopic[1]][3]
+      } | ${
+        topics[week + rep - 1]
+          ? topics[week + rep - 1][0]
+          : topics[topics.length - 2][0]
+      } |
       `;
     }
-    if (reps > 1) week += reps - 1 ;
+    if (reps > 1) week += reps - 1;
   }
   results += `</pre></section>`;
   return results;
