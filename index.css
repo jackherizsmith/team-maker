@@ -119,6 +119,8 @@ label {
 
 fieldset {
   border:1px solid green;
+  max-width: fit-content;
+  margin: 0 auto;
 }
 
 fieldset > legend {

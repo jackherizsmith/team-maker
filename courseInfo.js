@@ -6,10 +6,10 @@ const topics = [
   ["Database", 3],
   ["Authentication", 3],
   ["REST API", 4],
-  ["React week 1",4],
-  ["React week 2"]
+  ["React 1",4],
+  ["React 2", 5]
 ]; 
 
 const segments = ["Mon AM", "Mon PM", "Tues AM", "Tues PM", "Wed AM"];
 
-const readingWeek = 7; // get user input
+let readingWeek = 7; // get user input

@@ -1,7 +1,6 @@
 const range = document.getElementById("genderInput");
 const gender = document.getElementById("genderRatio");
 // const collapsibles = document.getElementsByClassName("collapsible")
-const courseInfo = document.getElementById("course");
 const tooltips = document.getElementsByClassName("tooltiptext");
 const form = document.getElementById("people");
 const mSection = document.getElementById("men");
@@ -36,25 +35,42 @@ const fillCourseInfo = () => {
     <input id="topic${topic}" name="topic${topic}" type="text" value="${
       topics[topic][0]
     }" aria-labelledBy="topic${topic}">`;
-    if (topics[topic].length === 2) {
-      results += `<select name="teamForTopic${topic}" id="teamForTopic${topic}" aria-labelledBy="topic${topic}">`;
-      for (let team = 0; team < 5; team++) {
-        results += `<option value="${team}" ${
-          topics[topic][1] === team ? "selected" : ""
-        }>${team + 1}</option>`;
-      }
+    results += `<select name="teamForTopic${topic}" id="team${topic}" aria-labelledBy="topic${topic}">`;
+    for (let team = 0; team < 6; team++) {
+      results += `<option value="${team}" ${
+        topics[topic][1] === team ? "selected" : ""
+      }>${team < 5 ? team + 1 : "N/A"}</option>`;
     }
     results += `</select>`;
   }
-  results += `<fieldset id="readingWeekInput"><legend>Reading week</legend>`
-  for (let week = 0; week < topics.length; week ++) {
-    results += `<div class="weekRadios"><input type="radio" id="wk${week}" name="reading-week" value="${week}" ${week === readingWeek ? "checked" : ""}><label for="wk${week}">${week + 1}</label></div>`;
+  results += `<fieldset id="readingWeekInput"><legend>Reading week</legend>`;
+  for (let week = 0; week < topics.length; week++) {
+    results += `<div class="weekRadios"><input type="radio" id="week${week}" name="reading-week" value="${week}" ${
+      week === readingWeek ? "checked" : ""
+    }><label for="wk${week}">${week + 1}</label></div>`;
   }
-  results += "</fieldset>"
-  courseInfo.innerHTML = results;
+  results += "</fieldset>";
+  return results;
 };
 
-fillCourseInfo();
+const handleCourseInput = (e) => {
+  const id = e.target.id;
+  const targetNum = id.charAt(id.length-1);
+  const value = e.target.value;
+  switch (id.slice(0, -1)) {
+    case "topic":
+      topics[targetNum][0] = value;
+      break;
+    case "team":
+      topics[targetNum][1] = value;
+      break;
+    case "week":
+      readingWeek = value;
+      break;
+    default:
+      break;
+  }
+};
 
 // collapsibles[0].addEventListener("click", e => {
 //   e.target.classList.toggle("active");
@@ -138,7 +154,7 @@ const shift = (gender, dir) => {
 };
 
 const submitHandler = (e) => {
-  e.preventDefault();
+  if (e) e.preventDefault();
 
   const mArray = getInputs(mSection);
   const nmArray = getInputs(nmSection);
@@ -148,6 +164,16 @@ const submitHandler = (e) => {
   const teams = createTeams(cohort);
   const pairs = createPairs(cohort);
   output.innerHTML = printAll(cohort, teams, pairs);
+  const courseInfo = document.getElementById("course");
+  courseInfo.innerHTML = fillCourseInfo();
+  Array.from(courseInfo.children)
+    .filter((el) => el.tagName === "INPUT" || "SELECT")
+    .forEach((el) => {
+      el.addEventListener("input", handleCourseInput);
+      el.addEventListener("keyup", e => {
+        if (e.key === "Enter") submitHandler();
+      });
+    });
 };
 
 form.addEventListener("submit", submitHandler);

@@ -20,6 +20,8 @@ const printTeams = (teamSets) => {
     results += `<tr><td>${team+1}</td><td>${teamSets[team][0].join(', ')}</td><td>${teamSets[team][1].join(', ')}</td><td>${teamSets[team][2].join(', ')}</td><td>${teamSets[team][3].join(', ')}</td></tr>`
   }
   results += "</table>";
+  results += `<button type="button" class="collapsible"><h2>Course info</h2></button>
+  <form id="course" class="hidden-content"></form>`
   results +=
     numOfMen === 7
       ? `<div class="warning"><p><strong>Please be aware that Team 4 in sets 1 and 2 are all dudes:</strong></p>
@@ -63,7 +65,7 @@ const printTeams = (teamSets) => {
 | ---- | ----- | ------ | ------ | ------ | ------ |`;
   for (let week = 0; week < topics.length; week++) {
     results +=
-      topics[week][1] != undefined
+      topics[week][1] < 5
         ? `
 | ${week < readingWeek ? week + 1 : week + 2} | ${
             topics[week][0]
@@ -74,7 +76,7 @@ const printTeams = (teamSets) => {
         ? `| ${teamSets[topics[week][1]][team].join(", ")} `
         : "";
     }
-    results += topics[week][1] != undefined ? `|` : "";
+    results += topics[week][1] < 5 ? `|` : "";
   }
   results += `
   
