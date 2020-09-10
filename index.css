@@ -99,6 +99,7 @@ fieldset {
 label,
 input {
   display: block;
+  margin: 0 auto;
 }
 
 label {
@@ -134,7 +135,12 @@ label:not(:first-of-type) {
   margin-top: 1rem;
 }
 
-input[type="text"] {
+input[type="number"] {
+  width: 8ch;
+}
+
+input[type="text"],
+input[type="number"] {
   border:1px solid green;
   padding: .25rem;
   font: inherit;

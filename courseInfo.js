@@ -8,8 +8,8 @@ const topics = [
   ["REST API", 4],
   ["React 1",4],
   ["React 2", 5]
-]; 
+];
 
 const segments = ["Mon AM", "Mon PM", "Tues AM", "Tues PM", "Wed AM"];
 
-let readingWeek = 7; // get user input
+let readingWeek = 7, cohortNum = 0;

@@ -1,6 +1,6 @@
 const printCohort = (cohort) => {
-  let results = `<section><h3>The cohort</h3><div class="tooltip"><button class="copy" onclick="copy('cohort')" onmouseout="clearTip('cohort')"><span class="tooltiptext" id="cohortTip">Click to copy</span>Copy markdown</button></div>
-  <pre id="cohort"># The cohort
+  let results = `<section><h3>The FAC ${cohortNum} cohort</h3><div class="tooltip"><button class="copy" onclick="copy('cohort')" onmouseout="clearTip('cohort')"><span class="tooltiptext" id="cohortTip">Click to copy</span>Copy markdown</button></div>
+  <pre id="cohort"># The cohort of FAC ${cohortNum}
   
 | Name |
 | ---- |`;

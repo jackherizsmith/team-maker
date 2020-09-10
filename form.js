@@ -1,5 +1,6 @@
 const range = document.getElementById("genderInput");
 const gender = document.getElementById("genderRatio");
+const facNo = document.getElementById("facNo");
 // const collapsibles = document.getElementsByClassName("collapsible")
 const tooltips = document.getElementsByClassName("tooltiptext");
 const form = document.getElementById("people");
@@ -159,7 +160,7 @@ const submitHandler = (e) => {
   const mArray = getInputs(mSection);
   const nmArray = getInputs(nmSection);
   numOfMen = mArray.length;
-
+  cohortNum = facNo.value;
   const cohort = createCohort(mArray, nmArray);
   const teams = createTeams(cohort);
   const pairs = createPairs(cohort);
@@ -171,7 +172,10 @@ const submitHandler = (e) => {
     .forEach((el) => {
       el.addEventListener("input", handleCourseInput);
       el.addEventListener("keyup", e => {
-        if (e.key === "Enter") submitHandler();
+        if (e.key === "Enter") {
+          output.innerHTML = printAll(cohort, teams, pairs);
+          fillCourseInfo();
+        }
       });
     });
 };
