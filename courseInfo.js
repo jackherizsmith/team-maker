@@ -6,8 +6,8 @@ const topics = [
   ["Database", 3],
   ["Authentication", 3],
   ["REST API", 4],
-  ["Single-page App",4],
-  ["React"],
+  ["React week 1",4],
+  ["React week 2"]
 ]; 
 
 const segments = ["Mon AM", "Mon PM", "Tues AM", "Tues PM", "Wed AM"];

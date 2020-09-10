@@ -1,7 +1,7 @@
 const range = document.getElementById("genderInput");
 const gender = document.getElementById("genderRatio");
 // const collapsibles = document.getElementsByClassName("collapsible")
-// const courseInfo = document.getElementById("course");
+const courseInfo = document.getElementById("course");
 const tooltips = document.getElementsByClassName("tooltiptext");
 const form = document.getElementById("people");
 const mSection = document.getElementById("men");
@@ -11,30 +11,51 @@ const possibilities = document.getElementById("possibilities");
 let longestName = 0,
   numOfMen = 0;
 
-// for (let btn = 0; btn < copyBtns.length; btn++) {
-//   copyBtns[btn].
-// }
-
 const copy = (id) => {
-  /* Get the text field */
   const copyText = document.getElementById(id).textContent;
-  const input = document.createElement('textarea');
+  const input = document.createElement("textarea");
   input.innerHTML = copyText;
   document.body.appendChild(input);
   input.select();
-  const result = document.execCommand('copy');
+  const result = document.execCommand("copy");
   document.body.removeChild(input);
-  const tooltip = document.getElementById(id+"Tip");
+  const tooltip = document.getElementById(id + "Tip");
   tooltip.innerHTML = "Copied!";
   return result;
-}
+};
 
 const clearTip = (id) => {
   const tooltip = document.getElementById(id + "Tip");
   tooltip.innerHTML = "Click to copy";
-}
+};
 
-// 
+const fillCourseInfo = () => {
+  let results = "";
+  for (let topic = 0; topic < topics.length; topic++) {
+    results += `<label for="topic${topic}">Topic ${topic + 1}</label>
+    <input id="topic${topic}" name="topic${topic}" type="text" value="${
+      topics[topic][0]
+    }" aria-labelledBy="topic${topic}">`;
+    if (topics[topic].length === 2) {
+      results += `<select name="teamForTopic${topic}" id="teamForTopic${topic}" aria-labelledBy="topic${topic}">`;
+      for (let team = 0; team < 5; team++) {
+        results += `<option value="${team}" ${
+          topics[topic][1] === team ? "selected" : ""
+        }>${team + 1}</option>`;
+      }
+    }
+    results += `</select>`;
+  }
+  results += `<fieldset id="readingWeekInput"><legend>Reading week</legend>`
+  for (let week = 0; week < topics.length; week ++) {
+    results += `<div class="weekRadios"><input type="radio" id="wk${week}" name="reading-week" value="${week}" ${week === readingWeek ? "checked" : ""}><label for="wk${week}">${week + 1}</label></div>`;
+  }
+  results += "</fieldset>"
+  courseInfo.innerHTML = results;
+};
+
+fillCourseInfo();
+
 // collapsibles[0].addEventListener("click", e => {
 //   e.target.classList.toggle("active");
 //   const content = e.target.nextElementSibling;
@@ -50,14 +71,14 @@ const makeNewInputs = (ms, nms) => {
     newNmInputs = "";
   for (let m = 0; m < ms; m++) {
     newMInputs += `
-    <label for="m${m}" class="form__label">${m + 1}</label>
-    <input id="m${m}" name="m${m}" class="form__input" type="text" value="m" required>
+    <label for="m${m}">${m + 1}</label>
+    <input id="m${m}" name="m${m}" type="text" value="m" required>
     `;
   }
   for (let nm = 0; nm < nms; nm++) {
     newNmInputs += `
-    <label for="nm${nm}" class="form__label">${nm + 1}</label>
-    <input id="nm${nm}" name="nm${nm}" class="form__input" type="text" value="f" required>
+    <label for="nm${nm}">${nm + 1}</label>
+    <input id="nm${nm}" name="nm${nm}" type="text" value="f" required>
     `;
   }
 

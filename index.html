@@ -15,12 +15,10 @@
       <p>Sort the cohort and create <span id="possibilities"></span> different timelines</p>
     </header>
     <main>
-      <!-- <section>
+      <section>
         <button type="button" class="collapsible"><h2>Course info</h2></button>
-        <form action="/submit" id="course" class="hidden-content">
-          <p>blee bloo blah</p>
-        </form>
-      </section> -->
+        <form id="course" class="hidden-content"></form>
+      </section>
       <section>
         <h2>People in the cohort</h2>
         <form action="/submit" id="people">
@@ -37,10 +35,10 @@
             onInput="updateValue()"
           />
           <section id="nameInputs" class="form__names">
-            <div class="names">
+            <div class="inputs">
               <fieldset id="men"></fieldset>
             </div>
-            <div class="names">
+            <div class="inputs">
               <fieldset id="notMen"></fieldset>
             </div>
           </section>
